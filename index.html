@@ -66,7 +66,9 @@
         audio.play();
         audio.currentTime = 0; // After play the audio, rollback to start
         key.classList.add('playing');
-        
+        key.addEventListener('transitionend', function() {
+          key.classList.remove('playing');
+        })
       });
     </script>
 
