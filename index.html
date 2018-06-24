@@ -58,16 +58,15 @@
 
     <script>
 
-      window.addEventListener('keydown', function(e) {
+      function playSound(e) {
         const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
         const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
 
         if (!audio) return; // Stop function running if there is no audio
-        
         audio.play();
         audio.currentTime = 0; // After play the audio, rollback to start
         key.classList.add('playing');
-      });
+      }
 
       function removeTransition(e) {
         if (e.propertyName !== 'transform') return; // Only runs when the propname is transform
@@ -77,6 +76,8 @@
 
       const keys = document.querySelectorAll('.key');
       keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+      window.addEventListener('keydown', playSound);
 
     </script>
 
